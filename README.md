@@ -1,12 +1,13 @@
 # Mapa_Fisicas-2D
-### Objetos Físicos y Configuración:
 
-1. **Dinámico:** Se refiere a un objeto con un Rigidbody2D normal, que responde a las fuerzas físicas (gravedad, fuerzas externas, colisiones).
-2. **Cinemático:** Es un objeto con un Rigidbody2D en modo "Kinematic", lo que significa que no responde a las fuerzas físicas, pero puede moverse si se actualizan sus propiedades manualmente.
-3. **Estático:** Es un objeto sin Rigidbody2D (o con Rigidbody2D marcado como "Static"), que no se mueve, no responde a fuerzas ni interacciona con las físicas de la misma manera que los objetos dinámicos.
-4. **IsTrigger:** Se refiere a un collider que está configurado como un "trigger", lo que significa que, en lugar de colisionar y bloquear el movimiento de otros objetos, permite atravesar otros objetos y activar eventos **OnTrigger2D**.
+Está práctica ser divide en 3 bloques. U
+1. Un primer bloque dedicado a las físicas en Unity 2D
+2. Un segundo bloque dedicado a los Tilemaps
+3. Un tercer bloque dedicado a hacer una serie de mecánicas
 
-### Actividades a Realizar
+## Físicas 2D
+
+### Actividad 1
 
 1. **Ninguno de los objetos será físico.**
 2. **Un objeto tiene físicas y el otro no.**
@@ -16,7 +17,7 @@
 6. **Ambos objetos son físicos y uno de ellos está marcado como IsTrigger.**
 7. **Uno de los objetos es cinemático.**
 
-### Escena Básica:
+#### Escena Básica
 
 Voy a crear dos objetos simples en la escena: 
 - **Dynamic**: Será el primer objeto que cambiamos su configuración para cada uno de los casos, será dinámico.
@@ -24,9 +25,7 @@ Voy a crear dos objetos simples en la escena:
 
 Cada uno de estos objetos tendrá un **Collider2D** (para permitir colisiones), y algunos tendrán **Rigidbody2D** (para añadir físicas). Dependiendo del caso, ajustaremos sus propiedades para hacerlos dinámicos, cinemáticos, estáticos o triggers.
 
-### Scripting para Unity
-
-#### Script Base (aplicable a todos los casos):
+#### Script Base (aplicable a todos los casos)
 Creamos un script base para manejar los eventos de colisión y de trigger. Este script se aplicará a ambos objetos.
 
 ```csharp
@@ -51,12 +50,12 @@ public class PhysicsTest : MonoBehaviour
 #### Configuración de los Casos:
 
 a. **Ninguno de los objetos será físico.**
-   - Configuración: Ninguno tiene **Rigidbody2D**, solo tienen **Collider2D**.
-   - Resultado: No se activan ni **OnCollision2D** ni **OnTrigger2D** porque no hay físicas involucradas. Las colisiones no se detectarán.
+   - Configuración: Ninguno tiene ```Rigidbody2D```, solo tienen ```Collider2D```.
+   - Resultado: No se activan ni ```OnCollision2D``` ni ```OnTrigger2D``` porque no hay físicas involucradas. Las colisiones no se detectarán.
 
 b. **Un objeto tiene físicas y el otro no.**
    - Configuración: 
-     - **Dynamic**: Añadimos un **Rigidbody2D** (dinámico).
+     - **Dynamic**: Añadimos un ```Rigidbody2D```(dinámico).
      - **Kinematic**: Solo tiene **Collider2D** sin **Rigidbody2D**.
    - Resultado: Ocurre colisión ya que Unity requiere que al menos uno de ellos tenga Rigidbody para detectar colisiones y se activa el método **OnCollisionEnter2D** mostrando un mensaje en la consola.
 
@@ -90,7 +89,7 @@ g. **Uno de los objetos es cinemático.**
      - **Kinematic**: **Rigidbody2D** cinemático.
    - Resultado: La colisión ocurre y se activa **OnCollisionEnter2D**. Los objetos pueden colisionar ya que el objeto cinemático puede chocar con dinámicos.
 
-2.
+### Actividad 1
 
 ### a. **Objeto estático que ejerce de barrera infranqueable:**
 Este será un objeto que no se mueve y no permite que otros objetos lo atraviesen.
