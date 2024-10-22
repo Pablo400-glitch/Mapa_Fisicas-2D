@@ -55,6 +55,10 @@ a. **Ninguno de los objetos será físico.**
    - Resultado
         - No se activa ni ```OnCollision2D``` ni ```OnTrigger2D``` porque no hay físicas involucradas. Las colisiones no se detectarán**.
 
+![alt text](images/1-a.png)
+
+*Figura 1: Colisión entre los objetos*
+
 b. **Un objeto tiene físicas y el otro no.**
    - Configuración:
         - **Dynamic**: Añadimos un ```Rigidbody2D```(dinámico).
@@ -111,7 +115,12 @@ Este será un objeto que no se mueve y no permite que otros objetos lo atraviese
 - Añadimos un objeto en la parte inferior de la pantalla sin textura con un componente ```BoxCollider2D```. A este objeto no se le agrega un ```Rigidbody2D```. 
 - Esto lo convierte en un objeto estático que actúa como una barrera física, este barrera hará que los objetos dinámicos no puedan atravesarla.
 
+![alt text](images/2-a.png)
+
+*Figura 2: Colisión de Dynamic con Floor*
+
 #### b. **Zona en la que los objetos que caen en ella son impulsados hacia adelante:**
+
 Crearemos una zona que aplica una fuerza a cualquier objeto que entre en contacto con ella.
 
 **Configuración:**
@@ -141,6 +150,7 @@ public class ImpulseZone : MonoBehaviour
 En este script, cuando un objeto con un ```Rigidbody2D``` entra en la zona, se le aplica una fuerza que lo impulsa hacia adelante.
 
 #### c. **Objeto que es arrastrado por otro a una distancia fija:**
+
 Aquí implementamos un sistema de objetos conectados a través de una distancia fija, similar a una cuerda o cadena.
 
 **Configuración:**
@@ -150,6 +160,7 @@ Aquí implementamos un sistema de objetos conectados a través de una distancia 
 2. Asigna el segundo objeto (el arrastrado) al campo de "Connected Body" del ```DistanceJoint2D```.
 
 #### d. **Objeto que al colisionar con otros sigue un comportamiento totalmente físico:**
+
 Un objeto que se comporta de acuerdo con la física realista será un objeto con un ```Rigidbody2D``` dinámico que responde a colisiones y fuerzas físicas de manera normal.
 
 **Configuración:**
@@ -172,29 +183,45 @@ En este bloque se estuvieron probando distintas cosas relacionadas con los Tilem
 
 ### a. Crea dos Tilemaps adicionales de obstáculos. Uno puede representar elementos decorativos y otro obstáculos
 
-Tuve que crear dos Tilemaps: uno para las decoraciones y otro para los obstáculos (ver Figura X). 
+Tuve que crear dos Tilemaps: uno para las decoraciones llamado **Decorations** y otro para los obstáculos llamado **Obstacles** (ver Figura X). 
 
 Para añadir elementos como Tiles al mapa del juego, utilicé el editor de sprites y los dividí adecuadamente, lo que facilitó su colocación en el entorno.
 
-Figura X
+![alt text](images/Tilemaps-0.png)
+
+*Figura X: Tilemaps de decoración y de obstaculos*
 
 ### b. Agrega a la capa de obstáculos la configuración necesaria para que el Tilemap se construya de forma independiente y el obstáculo actúe como tal.
 
 #### I. Velocidad del renderizado muy alta: Activa detección de colisiones continua
-Añadir captura
+
+![alt text](images/Tilemaps-1.png)
+
+*Figura X: Configuración del RigidBody del Tilemap Obstacles*
 
 #### II. Orden de las capas
-Añadir captura
+
+![alt text](images/Tilemaps-2.png)
+
+*Figura X: Añadir capas de Tilemaps*
+
+![alt text](images/Tilemaps-2.1.png)
+
+*Figura X: Configuración del Order in Layer*
 
 Para la capa obstacles le he puesto el order in layer de 1, esto provoca que los elementos aparezcan por delante de decorations. Esto es para los elementos que se pueden haber quedado detrás.
 
 #### III. Las capas permiten colisiones entre sí.
 
-Añadir captura
+![alt text](images/Tilemaps-3.png)
+
+*Figura X: Layer Collision Matrix*
 
 #### IV. Tamaño y forma de los colliders. Se puede corregir editando el Sprite para adaptar la forma al objeto y aplicar Custom Physics Shape
 
-Añadir captura
+![alt text](images/Tilemaps-4.png)
+
+*Figura X: Forma adaptada con Custom Physics Shape*
 
 #### V. Si has modificado la escala puede afectar a la detección de colisiones.
 
@@ -202,8 +229,12 @@ Al no haber modificado las escalas, no he sufrido de ningún problema con la det
 
 ## Mecánicas Útiles 
 
+En este bloque tuve que desarrollar una serie de mecánicas útiles para el desarrollo de videojuegos en Unity.
+
 ### Control del personaje basado en físicas
 
+Para poder controlar a un personaje basado en físicas se debe hacer lo siguiente:
+
 ```csharp
 public class PlayerMovement : MonoBehaviour
 {
@@ -227,80 +258,17 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveH = Input.GetAxis("Horizontal");
 
-        if (moveH > 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (moveH < 0)
-        {
-            spriteRenderer.flipX = false;
-        }
+        ...
 
         Vector2 vtranslate = new Vector2(moveH * velocity * Time.deltaTime, 0);
         rb2D.MovePosition(rb2D.position + vtranslate);
     }
 }
 ```
+
+Un problema con este script es que la gravedad del personaje se ve afectada, ya que este cae más lento que cuando no se usaba el script.
+
 ### Salto
-
-```csharp
-public class PlayerMovement : MonoBehaviour
-{
-    public float velocity = 5f;
-    public float thrust = 5f;
-    private bool isJumping = false;
-
-    private Rigidbody2D rb2D;
-    private SpriteRenderer spriteRenderer;
-
-    void Start()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void FixedUpdate()
-    {
-        Movement();
-    }
-
-    private void Movement()
-    {
-        float moveH = Input.GetAxis("Horizontal");
-
-        if (Input.GetButton("Jump") && !isJumping)
-        {
-            rb2D.AddForce(transform.up * thrust);
-            isJumping = true;
-        }
-
-
-        if (moveH > 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (moveH < 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-
-        Vector2 vtranslate = new Vector2(moveH * velocity * Time.deltaTime, 0);
-        rb2D.MovePosition(rb2D.position + vtranslate);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Floor"))
-        {
-            isJumping = false;
-            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
-        }
-    }
-
-}
-```
-
-### Salto a una plataforma
 
 ```csharp
 public class PlayerMovement : MonoBehaviour
@@ -338,6 +306,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            isJumping = false;
+            rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
+        }
+    }
+}
+```
+
+### Salto a una plataforma
+
+Para esta mecánica
+
+```csharp
+public class PlayerMovement : MonoBehaviour
+{
+    ...
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.CompareTag("Floor") || other.gameObject.CompareTag("Platform"))
         {
             isJumping = false;
@@ -353,14 +341,21 @@ public class PlayerMovement : MonoBehaviour
     // Detectar cuando sale de la plataforma
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // Si sale de la plataforma, desasociar el jugador
         if (collision.gameObject.CompareTag("Platform"))
         {
-            transform.parent = null;  // Desvincular al jugador de la plataforma
+            transform.parent = null; 
         }
     }
 }
 ```
+
+![alt text](images/Salto_a_una_plataforma.png)
+
+*Figura X: Personaje sobre la plataforma*
+
+En Figura X se puede ver al personaje sobre una plataforma y en la jerarquía se puede ver como el personaje se vuelve hijo de la plataforma
+
+
 ### Manejar colisiones con elementos de una capa determinada
 
 ```csharp
@@ -409,6 +404,68 @@ public class PlayerMovement : MonoBehaviour
         {
             collision.gameObject.GetComponent<TilemapRenderer>().enabled = false;
         }
+    }
+}
+```
+
+### Mecánica de recolección
+
+```csharp
+public class PlayerMovement : MonoBehaviour
+{
+    ...
+
+    public delegate void ItemCollected(int totalItemsCollected);
+    public event ItemCollected onItemCollected;
+
+    private int itemsCollected = 0;
+
+    ...
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        ...
+
+        if (other.gameObject.CompareTag("Item"))
+        {
+            AddItem(other);
+        }
+    }
+
+    private void AddItem(Collision2D item)
+    {
+        itemsCollected++;
+        if (onItemCollected != null)
+        {
+            onItemCollected(itemsCollected);
+        }
+        onItemCollected.Invoke(itemsCollected);
+        Destroy(item.gameObject);
+    }
+
+    ...
+}
+```
+
+```csharp
+public class Subscriptor : MonoBehaviour
+{
+    public PlayerMovement player;
+    public Text itemCounterText;
+
+    void Start()
+    {
+        player.onItemCollected += UpdateItemCounter;
+    }
+
+    void UpdateItemCounter(int totalItemsCollected)
+    {
+        itemCounterText.text = "Items Collected: " + totalItemsCollected.ToString();
+    }
+
+    void OnDestroy()
+    {
+        player.onItemCollected -= UpdateItemCounter;
     }
 }
 ```
