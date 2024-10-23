@@ -49,7 +49,7 @@ public class PhysicsTest : MonoBehaviour
 
 #### Configuración de los Casos:
 
-a. **Ninguno de los objetos será físico.**
+##### a. **Ninguno de los objetos será físico.**
    - Configuración
         - Ninguno tiene ```Rigidbody2D```, solo tienen ```Collider2D```.
    - Resultado
@@ -57,13 +57,9 @@ a. **Ninguno de los objetos será físico.**
 
 ![alt text](images/1-a.png)
 
-*Figura 1: Colisión entre los objetos*
+*Figura 1: Objetos superpuestos*
 
-![alt text](images/1-a.gif)
-
-*Figura 2: Colisión entre los objetos*
-
-b. **Un objeto tiene físicas y el otro no.**
+##### b. **Un objeto tiene físicas y el otro no.**
    - Configuración:
         - **Dynamic**: Añadimos un ```Rigidbody2D```(dinámico).
         - **Kinematic**: Solo tiene ```Collider2D``` sin ```Rigidbody2D```.
@@ -71,7 +67,11 @@ b. **Un objeto tiene físicas y el otro no.**
    - Resultado
         - Ocurre colisión ya que Unity requiere que al menos uno de ellos tenga Rigidbody para detectar colisiones y se activa el método ```OnCollisionEnter2D``` mostrando un mensaje en la consola.
 
-b. **Ambos objetos tienen físicas.**
+![alt text](images/1-a.gif)
+
+*Figura 2: Colisión entre los objetos*
+
+##### c. **Ambos objetos tienen físicas.**
    - Configuración: 
         - **Dynamic**: Añadimos un ```Rigidbody2D``` (dinámico).
         - **Kinematic**: Añadimos un ```Rigidbody2D``` (cinemático).
@@ -79,7 +79,7 @@ b. **Ambos objetos tienen físicas.**
    - Resultado
         - Se activa el método ```OnCollisionEnter2D``` cuando los objetos colisionan, y se muestra un mensaje en la consola.
 
-d. **Ambos objetos tienen físicas y uno de ellos tiene 10 veces más masa que el otro.**
+##### d. **Ambos objetos tienen físicas y uno de ellos tiene 10 veces más masa que el otro.**
    - Configuración
         - **Dynamic**: ```Rigidbody2D``` cinemático con masa estándar (ej. 1).
         - **Kinematic**: ```Rigidbody2D``` dinámico con masa multiplicada por 10 (ej. masa = 10).
@@ -87,7 +87,7 @@ d. **Ambos objetos tienen físicas y uno de ellos tiene 10 veces más masa que e
    - Resultado
         - La colisión ocurre y se muestra el mensaje en la consola. Al ser cinemático el otro objeto, cuando cae encima o se ve afectado por la masa.
 
-e. **Un objeto tiene físicas y el otro es IsTrigger.**
+##### e. **Un objeto tiene físicas y el otro es IsTrigger.**
    - Configuración
         - **Dynamic**: ```Rigidbody2D``` dinámico.
         - **Kinematic**: ```Collider2D``` marcado como ```IsTrigger```.
@@ -100,7 +100,7 @@ e. **Un objeto tiene físicas y el otro es IsTrigger.**
 *Figura 3: Colisión con isTrigger activo*
 
 
-f. **Ambos objetos son físicos y uno de ellos está marcado como IsTrigger.**
+##### f. **Ambos objetos son físicos y uno de ellos está marcado como IsTrigger.**
    - Configuración:
         - **Dynamic**: ```Rigidbody2D``` dinámico.
         - **Kinematic**: ```Rigidbody2D``` dinámico con el ```Collider2D``` marcado como ```IsTrigger```.
@@ -108,7 +108,7 @@ f. **Ambos objetos son físicos y uno de ellos está marcado como IsTrigger.**
         - Se activa ```OnTriggerEnter2D``` cuando uno entra en el área del otro (siendo IsTrigger), se muestra un mensaje en la consola.
         - Como consecuencia de ser un ser un Trigger, el objeto dinámico ignora la colisión pero activa ```OnTriggerEnter2D```.
 
-g. **Uno de los objetos es cinemático.**
+##### g. **Uno de los objetos es cinemático.**
    - Configuración:
         - **Dynamic**: ```Rigidbody2D``` dinámico.
         - **Kinematic**: ```Rigidbody2D``` cinemático.
