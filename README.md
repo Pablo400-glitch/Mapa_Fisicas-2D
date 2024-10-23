@@ -130,7 +130,7 @@ Este será un objeto que no se mueve y no permite que otros objetos lo atraviese
 
 #### b. **Zona en la que los objetos que caen en ella son impulsados hacia adelante:**
 
-Crearemos una zona que aplica una fuerza a cualquier objeto que entre en contacto con ella.
+Cree una zona que aplica una fuerza a cualquier objeto que entre en contacto con ella.
 
 **Configuración:**
 - Un objeto que actúe como la "zona de impulso" tendrá un ```Collider2D``` con la opción de ```IsTrigger``` activada.
@@ -164,7 +164,7 @@ En este script, cuando un objeto con un ```Rigidbody2D``` entra en la zona, se l
 
 #### c. **Objeto que es arrastrado por otro a una distancia fija:**
 
-Aquí implementamos un sistema de objetos conectados a través de una distancia fija, similar a una cuerda o cadena.
+Aquí implementé el sistema de objetos conectados a través de una distancia fija, ```DistanceJoint2D```.
 
 **Configuración:**
 - Añado un ```DistanceJoint2D``` al objeto ```Dynamic``` y conectarlo al otro objeto, para que uno arrastre al otro.
@@ -184,7 +184,7 @@ Un objeto que se comporta de acuerdo con la física realista será un objeto con
 - Añade un ```Rigidbody2D``` y un ```BoxCollider2D``` al objeto.
 
 #### e. **Dos capas que eviten colisiones entre ciertos tipos de objetos:**
-Este punto requiere la creación de dos capas diferentes para los objetos y configurar la colisión entre ellas.
+En este punto tuve que crear dos capas diferentes para los objetos y configurar la colisión entre ellas.
 
 **Configuración:**
 
@@ -196,7 +196,7 @@ La LayerA la puse en el objeto que se llama Kinematic y la LayerB en el objeto i
 
 ## Tilemaps 
 
-En este bloque se estuvieron probando distintas cosas relacionadas con los Tilemaps en Unity 2D.
+En este bloque estuve probando distintas cosas relacionadas con los Tilemaps en Unity 2D.
 
 ### a. Crea dos Tilemaps adicionales de obstáculos. Uno puede representar elementos decorativos y otro obstáculos
 
