@@ -334,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
 
 ![alt text](images/Salto.gif)
 
-*Figura 12: Salto del personaje*
+*Figura 13: Salto del personaje*
 
 ### Salto a una plataforma
 
@@ -372,7 +372,7 @@ public class PlayerMovement : MonoBehaviour
 
 ![alt text](images/Salto_a_una_plataforma.png)
 
-*Figura 13: Personaje sobre la plataforma*
+*Figura 14: Personaje sobre la plataforma*
 
 En Figura 13 se puede ver al personaje sobre la plataforma, cuando el jugador cae sobre la plataforma se puede ver en la jerarquía como el personaje se vuelve hijo de la plataforma.
 
@@ -403,7 +403,7 @@ public class PlayerMovement : MonoBehaviour
 
 ![alt text](images/Manejar_colisiones_con_elementos_de_una_capa.gif)
 
-*Figura 14: Colision con elemento de una capa*
+*Figura 15: Colision con elemento de una capa*
 
 ### Plataformas invisibles que se vuelven visibles
 
@@ -440,7 +440,7 @@ En está mecánica cuando el jugador colisione con una plataforma que se encuent
 
 ![alt text](images/Plataforma_invisible.gif)
 
-*Figura 15: Colision con plataforma invisible*
+*Figura 16: Colision con plataforma invisible*
 
 ### Mecánica de recolección
 
@@ -508,4 +508,4 @@ public class Subscriptor : MonoBehaviour
 
 ![alt text](images/Recolección_de_objetos.gif)
 
-*Figura 16: Personaje recolentado un objeto*
+*Figura 17: Personaje recolentado un objeto*
