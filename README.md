@@ -61,7 +61,7 @@ a. **Ninguno de los objetos será físico.**
 
 b. **Un objeto tiene físicas y el otro no.**
    - Configuración:
-        - **Dynamic**: Añadimos un ```Rigidbody2D```(dinámico).
+        - **Dynamic**: Añadí un ```Rigidbody2D```(dinámico).
         - **Kinematic**: Solo tiene ```Collider2D``` sin ```Rigidbody2D```.
 
    - Resultado
@@ -73,8 +73,8 @@ b. **Un objeto tiene físicas y el otro no.**
 
 c. **Ambos objetos tienen físicas.**
    - Configuración: 
-        - **Dynamic**: Añadimos un ```Rigidbody2D``` (dinámico).
-        - **Kinematic**: Añadimos un ```Rigidbody2D``` (cinemático).
+        - **Dynamic**: Añadí un ```Rigidbody2D``` (dinámico).
+        - **Kinematic**: Añadí un ```Rigidbody2D``` (cinemático).
 
    - Resultado
         - Se activa el método ```OnCollisionEnter2D``` cuando los objetos colisionan, y se muestra un mensaje en la consola.
