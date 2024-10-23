@@ -20,8 +20,8 @@ Está práctica ser divide en 3 bloques.
 #### Escena Básica
 
 Voy a crear dos objetos simples en la escena: 
-- **Dynamic**: Será el primer objeto que cambiamos su configuración para cada uno de los casos, será dinámico.
-- **Kinematic**: Será el segundo objeto que también ajustaremos de acuerdo a los requerimientos, será cinemático.
+- **Dynamic**: Será el primer objeto que cambie su configuración para cada uno de los casos, será dinámico.
+- **Kinematic**: Será el segundo objeto que también ajusté de acuerdo a los requerimientos, será cinemático.
 
 Cada uno de estos objetos tendrá un ```Collider2D``` (para permitir colisiones), y algunos tendrán ```Rigidbody2D``` (para añadir físicas). Dependiendo del caso, tendre que ajustar sus propiedades para hacerlos dinámicos, cinemáticos, estáticos o triggers.
 
